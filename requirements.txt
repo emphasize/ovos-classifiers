@@ -3,3 +3,5 @@ nltk
 joblib
 ovos-utils
 python-dateutil>=2.8.2
+# TODO make optional?
+holidays
