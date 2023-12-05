@@ -213,7 +213,7 @@ class EnglishNormalizer(Normalizer):
         _default_config = json.load(f)
 
     def numbers_to_digits(self, utterance: str) -> str:
-        return EnglishNumberParser().convert_words_to_numbers(utterance)
+        return EnglishNumberParser().convert_words_to_numbers(utterance).text
 
 
 class AzerbaijaniNormalizer(Normalizer):
