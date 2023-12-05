@@ -154,9 +154,9 @@ class Normalizer:
             utterance = utterance.lower()
         if self.should_expand_contractions:
             utterance = self.expand_contractions(utterance)
+        utterance = self.replace_words(utterance)
         if self.should_numbers_to_digits:
             utterance = self.numbers_to_digits(utterance)
-        utterance = self.replace_words(utterance)
 
         # removals
         if self.should_remove_symbols:
@@ -229,7 +229,7 @@ class GermanNormalizer(Normalizer):
         _default_config = json.load(f)
 
     def numbers_to_digits(self, utterance: str) -> str:
-        return GermanNumberParser().convert_words_to_numbers(utterance)
+        return GermanNumberParser().convert_words_to_numbers(utterance).text
     
     def remove_symbols(self, utterance: str) -> str:
         # special rule for hyphanated words in german as some STT engines falsely
