@@ -1284,7 +1284,7 @@ class TestAEnglish(unittest.TestCase):
 
         # fails 2027 (2027-03-20; shifting equinox)
         self._extract_date("winter",
-                           datetime(now_local().year-1, 12, 21, 0, 0, tzinfo=timezone.utc),
+                           datetime(now_local().year-1, 12, 22, 0, 0, tzinfo=timezone.utc),
                            anchor=datetime(now_local().year, 2, 3, 12, 0, tzinfo=timezone.utc))
         # NOTE: those differ because when asked in the season (local time) it will return the start
         # of the season, otherwise "winter of 69" would return an 68 date

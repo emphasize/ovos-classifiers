@@ -621,6 +621,10 @@ class TestGerman(unittest.TestCase):
                                datetime(2022, 10, 15, 14, 30))
         self._extract_datetime("Stell einen Countdown für Neujahr.",
                                datetime(2118, 1, 1, 0, 0))
+        self._extract_datetime("Wie wird das wetter heute?",
+                               datetime(2117, 2, 3, 0, 0))
+        self._extract_datetime("Wie wird das wetter heute um 18 uhr?",
+                               datetime(2117, 2, 3, 18, 0))
     
     def test_extract_datetime_ambiguous(self):
         pass
@@ -1029,7 +1033,7 @@ class TestGerman(unittest.TestCase):
                            date(2023, 3, 20),
                            anchor=anchor)
         self._extract_date("im Winter vor einem Jahr",
-                           date(2023, 12, 21),
+                           date(2022, 12, 22),
                            anchor=anchor)
     
     def test_extract_date_season_of(self):

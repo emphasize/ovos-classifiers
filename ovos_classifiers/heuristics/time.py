@@ -1014,6 +1014,8 @@ class EnglishTimeTagger:
                     date_found = True
                     _offset = timedelta(days=near_dates[token.word])
                     extracted_date = (ref_date or current_date) + _offset
+                    if not time_found:
+                        extracted_date = extracted_date.replace(hour=0, minute=0, second=0)
                     date_words.consume(token)
                 # parse {weekday}
                 elif token.word in self._STRING_WEEKDAY:
@@ -3366,6 +3368,8 @@ class GermanTimeTagger:
                         continue
                     _offset = timedelta(days=near_dates[token.lowercase])
                     extracted_date = (ref_date or current_date) + _offset
+                    if not time_found:
+                        extracted_date = extracted_date.replace(hour=0, minute=0, second=0)
                     date_words.consume(token)
                 
                 # parse {wochentag}
