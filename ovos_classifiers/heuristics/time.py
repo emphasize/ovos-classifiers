@@ -2871,6 +2871,8 @@ class GermanTimeTagger:
                         _consumed.append(tokNext)
                 # parse morning/afternoon/evening/night/noon/midnight
                 elif token.lowercase in daytimes:
+                    if token.lowercase == "morgen" and tokPrev.lowercase != "am":
+                        continue
                     if not time_found:
                         _hour, _min = daytimes[token.lowercase]
                     _consumed.append(token)
@@ -3363,13 +3365,13 @@ class GermanTimeTagger:
 
                 # parse "jetzt"/"heute"/"gestern"/"vorgestern"/"morgen"/"übermorgen"
                 if token.lowercase in near_dates:
-                    date_found = True
                     if token.lowercase == "morgen" and tokPrev.lowercase == "am":
                         continue
                     _offset = timedelta(days=near_dates[token.lowercase])
                     extracted_date = (ref_date or current_date) + _offset
-                    if not time_found:
+                    if not time_found or not date_found:
                         extracted_date = extracted_date.replace(hour=0, minute=0, second=0)
+                    date_found = True
                     date_words.consume(token)
                 
                 # parse {wochentag}

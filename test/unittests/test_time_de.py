@@ -625,6 +625,10 @@ class TestGerman(unittest.TestCase):
                                datetime(2117, 2, 3, 0, 0))
         self._extract_datetime("Wie wird das wetter heute um 18 uhr?",
                                datetime(2117, 2, 3, 18, 0))
+        self._extract_datetime("Wie wird das wetter morgen?",
+                               datetime(2117, 2, 4, 0, 0))
+        self._extract_datetime("Wie wird das wetter morgen um 18 uhr 30?",
+                               datetime(2117, 2, 4, 18, 30))
     
     def test_extract_datetime_ambiguous(self):
         pass
